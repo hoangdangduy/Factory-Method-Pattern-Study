@@ -2,7 +2,13 @@ package com.hoang.factorymethod.process;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -15,13 +21,25 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
+@Configuration
+@PropertySource(value = "classpath:application.properties")
+@ConfigurationProperties
+@ComponentScan({
+        "com.hoang.factorymethod.*"
+})
 public class ProcessVideo implements CommandLineRunner{
 
     private static final Logger logger = LoggerFactory.getLogger(ProcessVideo.class);
     public static String url = "https://drive.google.com/get_video_info?docid=0BxrpnFGicM4remhWcUxnbDVGdlU";
 
+    @Value("${PROXY.IFI}")
+    public static String PROXY_IFI;
+
     @Override
     public void run(String... strings) throws Exception {
+
+        logger.error("ok123: " + PROXY_IFI);
+
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 //        logger.error(result.getBody());
