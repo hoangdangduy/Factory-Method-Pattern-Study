@@ -1,4 +1,4 @@
-package com.hoang.factorymethod.controller;
+package com.hoang.controller;
 
 public class Rectangle implements Shape {
     @Override
