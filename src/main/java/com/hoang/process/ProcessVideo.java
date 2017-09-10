@@ -29,6 +29,7 @@ public class ProcessVideo implements CommandLineRunner{
     public void run(String... strings) throws Exception {
 //        ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 //        String bodyResponse = result.getBody();
+//        logger.info(bodyResponse);
 //        bodyResponse = URLDecoder.decode(bodyResponse, "UTF-8");
 //        bodyResponse = URLDecoder.decode(bodyResponse, "UTF-8");
 //
